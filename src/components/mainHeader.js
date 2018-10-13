@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button } from 'semantic-ui-react';
+import { Segment, Grid, Button ,Modal} from 'semantic-ui-react';
  
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';
@@ -49,9 +49,13 @@ class Main extends Component {
                                 </Link>
                             </Grid.Column>
                             <Grid.Column>
-                                <Link to='/login'>
-                                <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
-                                </Link>
+                                <Modal trigger={
+                                    <Link to='/login'>
+                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
+                                    </Link>
+                                }>
+                                <LoginPage />
+                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -61,7 +65,7 @@ class Main extends Component {
                     <Route path={`/boy`} component={BoyPage}/>
                     <Route path={`/sale`} component={SalePage}/>
                     <Route path={`/winter`} component={WinterPage}/>
-                    <Route path={`/login`} component={LoginPage}/>
+                     
                 </Switch>
                 </div>
     
