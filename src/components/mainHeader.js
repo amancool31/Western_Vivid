@@ -50,9 +50,9 @@ class Main extends Component {
                             </Grid.Column>
                             <Grid.Column>
                                 <Modal trigger={
-                                    <Link to='/login'>
+                                     
                                     <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
-                                    </Link>
+                                    
                                 }>
                                 <Modal.Header>
                                     LOGIN/SIGN UP
