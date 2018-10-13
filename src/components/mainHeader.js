@@ -54,7 +54,10 @@ class Main extends Component {
                                     <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
                                     </Link>
                                 }>
-                                <LoginPage />
+                                <Modal.Header>
+                                    LOGIN/SIGN UP
+                                </Modal.Header>
+                                <center><LoginPage /></center>
                                 </Modal>
                             </Grid.Column>
                         </Grid.Row>
