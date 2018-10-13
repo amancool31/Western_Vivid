@@ -7,6 +7,7 @@ import BoyPage from '../pages/boyPage';
 import SalePage from '../pages/salePage';
 import WinterPage from '../pages/winterPage';
 import LoginPage from '../pages/loginPage';
+import SignUpPage from '../pages/SignUpPage';
 
 class Main extends Component {
     constructor()
@@ -51,13 +52,13 @@ class Main extends Component {
                             <Grid.Column>
                                 <Modal trigger={
                                      
-                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
+                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'SIGNUP'})}}>SIGNUP</Button>
                                     
                                 }>
                                 <Modal.Header>
                                     LOGIN/SIGN UP
                                 </Modal.Header>
-                                <center><LoginPage /></center>
+                                <center><SignUpPage /></center>
                                 </Modal>
                             </Grid.Column>
                         </Grid.Row>
