@@ -47,7 +47,7 @@ class Main extends Component {
                 <div>
                  
                 <Segment raised>
-                    <Grid columns={this.state.showSignOut?7:6}>
+                    <Grid columns={7}>
                         <Grid.Row>
                             <Grid.Column>
 
@@ -76,7 +76,10 @@ class Main extends Component {
                             <Grid.Column>
                               <Modal trigger={ 
                                     // <Link to='/login'>
-                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'Login'})}}>LOGIN</Button>
+                                    this.state.showSignOut==true?
+                                    <Button color='blue' fluid inverted disabled>LOGIN</Button> 
+                                    :
+                                    <Button color='blue' fluid inverted onClick={()=>{this.setState({currentView:'Login'})}}>LOGIN</Button>
                                     // </Link>
                               }>
                               <br/><br/>
@@ -116,7 +119,7 @@ class Main extends Component {
                             {
                                 this.state.showSignOut?
                                 <Grid.Column>
-                                <Button color='red' onClick={()=>{this.onSignOut()}}>SIGN OUT</Button>
+                                <Button fluid  color='blue' onClick={()=>{this.onSignOut()}}>SIGN OUT</Button>
                             </Grid.Column>
                             :
                             null
