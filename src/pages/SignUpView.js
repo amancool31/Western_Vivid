@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {  BrowserRouter as Router,Route,Link, withRouter, } from 'react-router-dom';
 import auth from '../Firebase_config';
 //import * as routes from '../constants/routes';
@@ -84,10 +84,40 @@ class SignUpForm extends Component {
     {' '}
     <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
-*/
+
 export default SignUpPage;
 
-/*export {
+export {
   SignUpForm,
  // SignUpLink,
 };*/
+import React from "react";
+
+const SignUpView = ({ onSubmit }) => {
+  return (
+    <div>
+      <h1>Sign up</h1>
+      <form onSubmit={onSubmit}>
+        <label>
+          Email
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+          />
+        </label>
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </label>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
+};
+
+export default SignUpView;

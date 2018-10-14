@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import auth from "../Firebase_config";
 
-import SignUpPage from "./SignUpView";
+import SignUpView from "./SignUpView";
 
 class SignUpContainer extends Component {
   handleSignUp = async event => {
@@ -17,7 +17,7 @@ class SignUpContainer extends Component {
   };
 
   render() {
-    return <SignUpPage onSubmit={this.handleSignUp} />;
+    return <SignUpView onSubmit={this.handleSignUp} />;
   }
 }
 
