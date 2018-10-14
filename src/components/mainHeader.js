@@ -21,7 +21,7 @@ class Main extends Component {
             <div>
                 <BrowserRouter>
                 <div>
-                <Sticky active>
+                 
                 <Segment raised>
                     <Grid columns={6}>
                         <Grid.Row>
@@ -64,7 +64,7 @@ class Main extends Component {
                         </Grid.Row>
                     </Grid>
                 </Segment>
-                </Sticky><br/><br/><br/><br/><br/><br/>
+                
                 <Switch>
                     <Route path={`/men`} component={MenPage}/>
                     <Route path={`/boy`} component={BoyPage}/>
