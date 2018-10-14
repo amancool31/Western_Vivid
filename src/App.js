@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Segment,Grid,Button} from 'semantic-ui-react';
 import Main from './components/mainHeader';

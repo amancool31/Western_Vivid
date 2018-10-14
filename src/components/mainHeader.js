@@ -6,7 +6,8 @@ import MenPage from '../pages/menPage';
 import BoyPage from '../pages/boyPage';
 import SalePage from '../pages/salePage';
 import WinterPage from '../pages/winterPage';
-import LoginPage from '../pages/loginPage';
+import LoginContainer from '../pages/loginPage';
+import SignUpContainer from '../pages/SignUpPage'
 
 class Main extends Component {
     constructor()
@@ -50,16 +51,16 @@ class Main extends Component {
                                 </Link>
                             </Grid.Column>
                             <Grid.Column>
-                                <Modal trigger={
-                                     
-                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'LOGIN'})}}>LOGIN</Button>
-                                    
-                                }>
-                                <Modal.Header>
+                             {/*   <Modal trigger={ */}
+                                    <Link to='/login'>
+                                    <Button color='red' inverted onClick={()=>{this.setState({currentView:'Login'})}}>LOGIN</Button>
+                                    </Link>
+                                    {/* }>*/}
+                             {/*   <Modal.Header>
                                     LOGIN/SIGN UP
-                                </Modal.Header>
-                                <center><LoginPage /></center>
-                                </Modal>
+                             </Modal.Header>
+                                <center><LoginContainer /></center><br/><br/><br/><br/>
+                                </Modal>*/}
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -70,7 +71,8 @@ class Main extends Component {
                     <Route path={`/boy`} component={BoyPage}/>
                     <Route path={`/sale`} component={SalePage}/>
                     <Route path={`/winter`} component={WinterPage}/>
-                     
+                    <Route path={`/login`} component={LoginContainer}/>
+                    {/*{SignUpContainer LoginContainer}/>*/}
                 </Switch>
                 </div>
     
