@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import app from "../Firebase_config";
+import auth from "../Firebase_config";
 
-import SignUpView from "./SignUpView";
+import SignUpPage from "./SignUpView";
 
 class SignUpContainer extends Component {
   handleSignUp = async event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     try {
-      const user = await app
-        .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
+      const user = await auth.createUserWithEmailAndPassword(email.value, password.value);
       this.props.history.push("/");
     } catch (error) {
       alert(error);
@@ -19,7 +17,7 @@ class SignUpContainer extends Component {
   };
 
   render() {
-    return <SignUpView onSubmit={this.handleSignUp} />;
+    return <SignUpPage onSubmit={this.handleSignUp} />;
   }
 }
 

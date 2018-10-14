@@ -7,7 +7,7 @@ import BoyPage from '../pages/boyPage';
 import SalePage from '../pages/salePage';
 import WinterPage from '../pages/winterPage';
 import LoginPage from '../pages/loginPage';
-import SignUpPage from '../pages/SignUpPage';
+import SignUpContainer from '../pages/SignUpPage';
 
 class Main extends Component {
     constructor()
@@ -58,7 +58,7 @@ class Main extends Component {
                                 <Modal.Header>
                                     LOGIN/SIGN UP
                                 </Modal.Header>
-                                <center><SignUpPage /></center>
+                                <center><SignUpContainer /></center><br/><br/><br/><br/>
                                 </Modal>
                             </Grid.Column>
                         </Grid.Row>
