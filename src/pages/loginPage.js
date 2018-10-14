@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
+ 
 import auth from "../Firebase_config";
 import LoginView from "./LoginView";
 
@@ -8,8 +8,10 @@ class LoginContainer extends Component {
     event.preventDefault();
     const { email, password } = event.target.elements;
     try {
-      const user = await auth.signInWithEmailAndPassword(email.value, password.value);
-      this.props.history.push("/");
+      const user = await auth.signInWithEmailAndPassword(email.value, password.value).then(
+        ()=>{alert(email.value + ' Logged in')}
+      );
+      // this.props.history.push("/");
     } catch (error) {
       alert(error);
     }
@@ -20,4 +22,4 @@ class LoginContainer extends Component {
   }
 }
 
-export default withRouter(LoginContainer);
+export default LoginContainer;

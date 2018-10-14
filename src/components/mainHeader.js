@@ -14,8 +14,10 @@ class Main extends Component {
     {
         super()
         this.state={
-            currentView:''
+            currentView:'',
+            modalView:'login'
         }
+        
     }
     render() {
         return (
@@ -51,16 +53,44 @@ class Main extends Component {
                                 </Link>
                             </Grid.Column>
                             <Grid.Column>
-                             {/*   <Modal trigger={ */}
-                                    <Link to='/login'>
+                              <Modal trigger={ 
+                                    // <Link to='/login'>
                                     <Button color='red' inverted onClick={()=>{this.setState({currentView:'Login'})}}>LOGIN</Button>
-                                    </Link>
-                                    {/* }>*/}
-                             {/*   <Modal.Header>
-                                    LOGIN/SIGN UP
+                                    // </Link>
+                              }>
+                              <br/><br/>
+                                {
+                                    this.state.modalView=='login'?
+                                    <div>
+                                        <Modal.Header>
+                                    
+                                   <center>
+                                   <Button inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
+                                <Button inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
+                                   <br/>
+                                   </center>
                              </Modal.Header>
-                                <center><LoginContainer /></center><br/><br/><br/><br/>
-                                </Modal>*/}
+                                <Modal.Content><center><LoginContainer />
+                                
+                                </center></Modal.Content>
+                                    </div>
+                                :
+                                <div>
+                                        <Modal.Header>
+                                    
+                                  <center>
+                                  <Button inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
+                                <Button inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
+                                <br/>
+                                  </center>
+                             </Modal.Header>
+                                <Modal.Content><center><SignUpContainer />
+                                
+                                </center></Modal.Content>
+                                    </div>
+                                } 
+                                <br/><br/>
+                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -71,7 +101,8 @@ class Main extends Component {
                     <Route path={`/boy`} component={BoyPage}/>
                     <Route path={`/sale`} component={SalePage}/>
                     <Route path={`/winter`} component={WinterPage}/>
-                    <Route path={`/login`} component={LoginContainer}/>
+                    {/* <Route path={`/login`} component={LoginContainer}/> */}
+                    <Route path={`/signup`} component={SignUpContainer}/>
                     {/*{SignUpContainer LoginContainer}/>*/}
                 </Switch>
                 </div>
