@@ -98,13 +98,29 @@ const SignUpView = ({ onSubmit }) => {
     <div>
       <h1>Sign up</h1>
       <form onSubmit={onSubmit}>
+      <label>
+          Name
+          <input
+            name="name"
+            type="text"
+            placeholder="Name"
+          />
+        </label>
+        <label><br/>
+          Phone Number
+          <input
+            name="Phno"
+            type="number"
+            placeholder="phone number"
+          />
+        </label><br/>
         <label>
           Email
           <input
             name="email"
             type="email"
             placeholder="Email"
-          />
+          /><br/>
         </label>
         <label>
           Password
@@ -113,7 +129,7 @@ const SignUpView = ({ onSubmit }) => {
             type="password"
             placeholder="Password"
           />
-        </label>
+        </label><br/>
         <button type="submit">Sign Up</button>
       </form>
     </div>
