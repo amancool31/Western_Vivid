@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Segment, Grid, Button ,Modal,Sticky} from 'semantic-ui-react';
- 
+import firebase from 'firebase';
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';
 import BoyPage from '../pages/boyPage';
 import SalePage from '../pages/salePage';
 import WinterPage from '../pages/winterPage';
 import LoginContainer from '../pages/loginPage';
-import SignUpContainer from '../pages/SignUpPage'
+import SignUpContainer from '../pages/SignUpPage';
 
 class Main extends Component {
     constructor()
@@ -15,9 +15,30 @@ class Main extends Component {
         super()
         this.state={
             currentView:'',
-            modalView:'login'
+            modalView:'login',
+            showSignOut:false 
+             
         }
         
+    }
+    componentDidMount()
+    {
+        firebase.auth().onAuthStateChanged((user)=>{
+            if(user)
+            {
+                this.setState({showSignOut:true})
+            }
+            else
+            {
+                this.setState({showSignOut:false})
+            }
+        })
+    }
+    onSignOut()
+    {
+        firebase.auth().signOut().then(
+            ()=>{alert('You have been logged out')}
+        )
     }
     render() {
         return (
@@ -26,7 +47,7 @@ class Main extends Component {
                 <div>
                  
                 <Segment raised>
-                    <Grid columns={6}>
+                    <Grid columns={this.state.showSignOut?7:6}>
                         <Grid.Row>
                             <Grid.Column>
 
@@ -92,6 +113,14 @@ class Main extends Component {
                                 <br/><br/>
                                 </Modal>
                             </Grid.Column>
+                            {
+                                this.state.showSignOut?
+                                <Grid.Column>
+                                <Button color='red' onClick={()=>{this.onSignOut()}}>SIGN OUT</Button>
+                            </Grid.Column>
+                            :
+                            null
+                            }
                         </Grid.Row>
                     </Grid>
                 </Segment>

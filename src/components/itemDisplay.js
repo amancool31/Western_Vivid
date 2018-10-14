@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Card,Grid,Button,Input,Select} from 'semantic-ui-react';
- 
+import firebase from 'firebase';
   
 class ItemDisplay extends Component {
     constructor(props)
@@ -14,18 +14,39 @@ class ItemDisplay extends Component {
             dummyPriceMax:1000,
             priceMax:10000,
             priceMin:0,
-            searchResult:''
+            searchResult:'',
+            loggedIn:false
         }
     }
-
+    componentDidMount()
+    {
+        firebase.auth().onAuthStateChanged((user)=>{
+            if(user)
+            {
+                 
+                this.setState({loggedIn:true})
+                console.log('Welcome Back '+user.email)
+            }
+            else
+            {
+                 
+                this.setState({loggedIn:false})
+            }
+        })
+         
+    }
     pushToCart(item,index)
     {
+        
+        console.log(this.state.loggedIn); 
         let cartitems=this.state.cart;
         let itemsList=this.state.items;
         cartitems.push(item)
         itemsList[index].cart=true;
         this.setState({items:itemsList,cart:cartitems});
         console.log(this.state.cart)
+         
+         
     }
     removeFromCart(item,index)
     {
@@ -94,10 +115,19 @@ class ItemDisplay extends Component {
                                 <h2>₹ {i.price}</h2>
                                 <h3>{i.size}</h3>
                                 {
+                                    this.state.loggedIn==true?
+                                    <div>
+                                {
                                     i.cart==false?
                                     <Button fluid onClick={()=>{this.pushToCart(i,j)}} inverted color='red'>ADD TO CART</Button>
                                     :
+                                     
                                     <Button fluid onClick={()=>{this.removeFromCart(i,j)}}   color='red'>REMOVE FROM CART</Button>
+                                     
+                                }
+                                </div>
+                                :
+                                <Button fluid onClick={()=>{alert('Please Log In first')}} inverted color='red'>ADD TO CART</Button>
                                 }
                             </Card.Content>
                        </Card>  </Grid.Column>
