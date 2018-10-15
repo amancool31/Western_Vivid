@@ -71,7 +71,7 @@ class ItemDisplay extends Component {
             
             <Grid.Row centered>
             {
-                    this.state.cart.length!=0?
+                    this.state.cart.length!=0 && this.state.loggedIn==true?
                      <Button color='green'>PROCEED TO CHECKOUT</Button>  
                     :
                     null
@@ -127,7 +127,16 @@ class ItemDisplay extends Component {
                                 }
                                 </div>
                                 :
-                                <Button fluid onClick={()=>{alert('Make sure you have logged in and your account is verified')}} inverted color='red'>ADD TO CART</Button>
+                                <Button fluid onClick={()=>{
+                                if(this.state.loggedIn==false)
+                                {
+                                    alert('Please Log In')
+                                }
+                                else if(this.state.loggedIn==true && firebase.auth().currentUser.emailVerified==false)
+                                {
+                                    alert('Your account is not verified . A verification link has been sent to your inbox at '+firebase.auth().currentUser.email)
+                                }    
+                                }} inverted color='red'>ADD TO CART</Button>
                                 }
                             </Card.Content>
                        </Card>  </Grid.Column>
