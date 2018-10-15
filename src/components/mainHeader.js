@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button ,Modal,Sticky} from 'semantic-ui-react';
+import { Segment, Grid, Button ,Modal,Sticky,Card} from 'semantic-ui-react';
 import firebase from 'firebase';
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';
@@ -86,28 +86,47 @@ class Main extends Component {
                                 {
                                     this.state.modalView=='login'?
                                     <div>
-                                        <Modal.Header>
+                                        <Modal.Content>
                                     
                                    <center>
-                                   <Button inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
-                                <Button inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
+                                   
+                                   <Grid columns={2}>
+                                  <Grid.Row>
+                                      <Grid.Column>
+                                      <Button fluid inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
+                                
+                                      </Grid.Column>
+                                      <Grid.Column>
+                                      <Button fluid inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
+                                      </Grid.Column>
+                                  </Grid.Row>
+                                   </Grid>
                                    <br/>
+                                    
                                    </center>
-                             </Modal.Header>
+                             </Modal.Content><br/><br/>
                                 <Modal.Content><center><LoginContainer />
                                 
                                 </center></Modal.Content>
                                     </div>
                                 :
                                 <div>
-                                        <Modal.Header>
+                                        <Modal.Content>
                                     
                                   <center>
-                                  <Button inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
-                                <Button inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
-                                <br/>
+                                  <Grid columns={2}>
+                                    <Grid.Row>
+                                        <Grid.Column>
+                                        <Button fluid inverted color='blue' onClick={()=>{this.setState({modalView:'login'})}}>LOGIN</Button>
+                                    
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                        <Button fluid inverted color='red' onClick={()=>{this.setState({modalView:'signup'})}}>SIGNUP</Button>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                   </Grid>
                                   </center>
-                             </Modal.Header>
+                             </Modal.Content><br/><br/>
                                 <Modal.Content><center><SignUpContainer />
                                 
                                 </center></Modal.Content>

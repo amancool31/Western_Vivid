@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Card,Grid,Button,Input,Select} from 'semantic-ui-react';
+import React, { Component} from 'react';
+import {Card,Grid,Button,Input,Select } from 'semantic-ui-react';
 import firebase from 'firebase';
   
 class ItemDisplay extends Component {
@@ -10,10 +10,10 @@ class ItemDisplay extends Component {
             items:this.props.content,
             cart:[],
             sortedItems:[],
-            dummyPriceMin:0,
-            dummyPriceMax:1000,
-            priceMax:10000,
-            priceMin:0,
+            // dummyPriceMin:0,
+            // dummyPriceMax:1000,
+            // priceMax:10000,
+            // priceMin:0,
             searchResult:'',
             loggedIn:false
         }
@@ -57,10 +57,10 @@ class ItemDisplay extends Component {
         this.setState({items:itemsList,cart:cartitems});
         console.log(this.state.cart)
     }
-    onModify()
-    {
-        this.setState({priceMin:this.state.dummyPriceMin,priceMax:this.state.dummyPriceMax})
-    }
+    // onModify()
+    // {
+    //     this.setState({priceMin:this.state.dummyPriceMin,priceMax:this.state.dummyPriceMax})
+    // }
     render() {
         return (
             <div>
@@ -78,7 +78,7 @@ class ItemDisplay extends Component {
                 } 
              
             </Grid.Row>
-            <Grid.Row columns={4}>
+            {/* <Grid.Row columns={4}>
                 <Grid.Column>
                      
                         <Input placeholder='Minimum' value={this.state.dummyPriceMin} onChange={(text)=>
@@ -99,7 +99,7 @@ class ItemDisplay extends Component {
                        <Button color='red' onClick={()=>{this.onModify()}}>MODIFY</Button> 
                 </Grid.Column>
                 
-            </Grid.Row>
+            </Grid.Row> */}
                 {/* Unsorted */}
                  <Grid.Row  columns={4}>
                  {this.state.items.map((i,j)=>{
@@ -115,7 +115,7 @@ class ItemDisplay extends Component {
                                 <h2>₹ {i.price}</h2>
                                 <h3>{i.size}</h3>
                                 {
-                                    this.state.loggedIn==true?
+                                    this.state.loggedIn==true && firebase.auth().currentUser.emailVerified==true?
                                     <div>
                                 {
                                     i.cart==false?
@@ -127,7 +127,7 @@ class ItemDisplay extends Component {
                                 }
                                 </div>
                                 :
-                                <Button fluid onClick={()=>{alert('Please Log In first')}} inverted color='red'>ADD TO CART</Button>
+                                <Button fluid onClick={()=>{alert('Make sure you have logged in and your account is verified')}} inverted color='red'>ADD TO CART</Button>
                                 }
                             </Card.Content>
                        </Card>  </Grid.Column>
