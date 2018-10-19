@@ -1,5 +1,5 @@
 import React, { Component } from "react";
- 
+import {Button,Icon} from 'semantic-ui-react';
 import auth from "../Firebase_config";
 import  firebase from 'firebase';
 
@@ -14,10 +14,14 @@ class SignUpContainer extends Component {
     }
   }
 
+
+
   handleSignUp = async event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     
+
+
     try {
       const user = await auth.createUserWithEmailAndPassword(email.value, password.value).then(
         ()=>{
@@ -39,7 +43,13 @@ class SignUpContainer extends Component {
   };
 
   render() {
-    return <SignUpView onSubmit={this.handleSignUp}  message={this.state.message}/>;
+    return(
+      <div>
+        <SignUpView onSubmit={this.handleSignUp}  message={this.state.message}/>
+        
+      </div>
+
+    )
   }
 }
 

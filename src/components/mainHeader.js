@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button ,Modal,Sticky,Card} from 'semantic-ui-react';
+import { Segment, Grid, Button ,Modal,Sticky,Card,Image} from 'semantic-ui-react';
 import firebase from 'firebase';
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';
@@ -16,7 +16,8 @@ class Main extends Component {
         this.state={
             currentView:'',
             modalView:'login',
-            showSignOut:false 
+            showSignOut:false ,
+            photoURL:''
              
         }
         
@@ -26,11 +27,12 @@ class Main extends Component {
         firebase.auth().onAuthStateChanged((user)=>{
             if(user)
             {
-                this.setState({showSignOut:true})
+                this.setState({showSignOut:true,photoURL:user.photoURL})
+                 
             }
             else
             {
-                this.setState({showSignOut:false})
+                this.setState({showSignOut:false,photoURL:''})
             }
         })
     }
@@ -73,12 +75,23 @@ class Main extends Component {
                                 <Button color='red' inverted onClick={()=>{this.setState({currentView:'WINTER'})}}>WINTER</Button>
                                 </Link>
                             </Grid.Column>
-                            <Grid.Column>
+                            {
+                                this.state.showSignOut==true?
+                                <Grid.Column>
+                                    <Image src={this.state.photoURL} circular centered size='mini'/>
+                                </Grid.Column>
+                                :null
+                            }
+                            {
+                                this.state.showSignOut==false?
+                                <Grid.Column>
                               <Modal trigger={ 
                                     // <Link to='/login'>
-                                    this.state.showSignOut==true?
-                                    <Button color='blue' fluid inverted disabled>LOGIN</Button> 
-                                    :
+                                    
+                                     
+                                    
+                                      
+                                     
                                     <Button color='blue' fluid inverted onClick={()=>{this.setState({currentView:'Login'})}}>LOGIN</Button>
                                     // </Link>
                               }>
@@ -135,6 +148,8 @@ class Main extends Component {
                                 <br/><br/>
                                 </Modal>
                             </Grid.Column>
+                            :null
+                            }
                             {
                                 this.state.showSignOut?
                                 <Grid.Column>

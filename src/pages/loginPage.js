@@ -1,5 +1,6 @@
 import React, { Component } from "react";
- 
+import {Button,Icon} from 'semantic-ui-react';
+import firebase from 'firebase';
 import auth from "../Firebase_config";
 import LoginView from "./LoginView";
 
@@ -11,7 +12,37 @@ class LoginContainer extends Component {
       message:''
     }
   }
-  
+
+  handleGoogleSignIn()
+  {
+    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
+      ({user})=>{
+      console.log('SIGNED UP WITH GOOGLE '+user.email)
+      }
+       ).catch(
+        ()=>{
+          console.log('GOOGLE SIGN UP FAILED')
+        }
+      )
+  }
+
+  handleFBSignIn()
+{
+  firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(
+  ({user})=>{
+   
+  firebase.auth().currentUser.sendEmailVerification().then(
+    ()=>{
+      alert('We have sent you a verification Email to your inbox at '+firebase.auth().currentUser.email+'. To make use of our services you must verify your account')
+    }
+  )
+  }
+   ).catch(
+    ()=>{
+      console.log('FB SIGN UP FAILED')
+    }
+  )
+}
   handleSignUp = async event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
@@ -26,7 +57,11 @@ class LoginContainer extends Component {
   };
 
   render() {
-    return <LoginView onSubmit={this.handleSignUp} message={this.state.message}/>;
+    return (<div>
+      <LoginView onSubmit={this.handleSignUp} message={this.state.message}/><br/><br/>
+      <Button onClick={()=>{this.handleFBSignIn()}} color='blue' ><Icon name='facebook' />SIGN IN WITH FACEBOOK</Button>
+      <Button   color='red' onClick={()=>{this.handleGoogleSignIn()}}><Icon name='google' />SIGN IN WITH GOOGLE</Button>
+      </div>)
   }
 }
 
