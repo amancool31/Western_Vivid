@@ -30,7 +30,7 @@ class LoginContainer extends Component {
 {
   firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(
   ({user})=>{
-   
+   //Put a condition if user is already verified or not
   firebase.auth().currentUser.sendEmailVerification().then(
     ()=>{
       alert('We have sent you a verification Email to your inbox at '+firebase.auth().currentUser.email+'. To make use of our services you must verify your account')
@@ -38,8 +38,8 @@ class LoginContainer extends Component {
   )
   }
    ).catch(
-    ()=>{
-      console.log('FB SIGN UP FAILED')
+    (err)=>{
+     this.setState({message:err})
     }
   )
 }

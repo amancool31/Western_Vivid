@@ -25,6 +25,7 @@ class SignUpContainer extends Component {
     try {
       const user = await auth.createUserWithEmailAndPassword(email.value, password.value).then(
         ()=>{
+           
           firebase.auth().currentUser.sendEmailVerification().then(
             ()=>{
                this.setState({message:'We have sent you a verification Email to your inbox at '+firebase.auth().currentUser.email+'. To make use of our services you must verify your account'})

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button ,Modal,Sticky,Card,Image} from 'semantic-ui-react';
+import { Segment, Grid, Button ,Modal,Image} from 'semantic-ui-react';
 import firebase from 'firebase';
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';

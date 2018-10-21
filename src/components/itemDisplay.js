@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {Card,Grid,Button,Input,Select,Image } from 'semantic-ui-react';
+import {Card,Grid,Button,Image } from 'semantic-ui-react';
 import firebase from 'firebase';
 
   
@@ -96,10 +96,10 @@ class ItemDisplay extends Component {
                                <h3>₹ {i.price}</h3>
                                <h4>{i.size}</h4>
                                {
-                                   this.state.loggedIn==true && firebase.auth().currentUser.emailVerified==true?
+                                   this.state.loggedIn===true && firebase.auth().currentUser.emailVerified===true?
                                    <div>
                                {
-                                   i.cart==false?
+                                   i.cart===false?
                                    <Button   onClick={()=>{this.pushToCart(i,j)}} inverted color='red'>ADD TO CART</Button>
                                    :
                                     
@@ -109,11 +109,11 @@ class ItemDisplay extends Component {
                                </div>
                                :
                                <Button  onClick={()=>{
-                               if(this.state.loggedIn==false)
+                               if(this.state.loggedIn===false)
                                {
                                    alert('Please Log In')
                                }
-                               else if(this.state.loggedIn==true && firebase.auth().currentUser.emailVerified==false)
+                               else if(this.state.loggedIn===true && firebase.auth().currentUser.emailVerified===false)
                                {
                                    alert('Your account is not verified . A verification link has been sent to your inbox at '+firebase.auth().currentUser.email)
                                }    
@@ -147,7 +147,7 @@ class ItemDisplay extends Component {
                 
            <br/><br/>
             {
-                    this.state.cart.length!=0?
+                    this.state.cart.length!==0?
                     <Button color='green'>PROCEED TO CHECKOUT</Button>
                     :
                     null

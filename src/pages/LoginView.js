@@ -1,16 +1,12 @@
 import React,{ Component } from "react";
-import {BrowserRouter,Switch,Route,Link} from 'react-router-dom';
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import SignUpContainer from "./SignUpPage";
-import {Input,Button,Card} from 'semantic-ui-react';
+import {Input,Button} from 'semantic-ui-react';
 
  
  
  class LoginView extends Component {
-  constructor(props)
-  {
-    super(props)
-
-  } 
+   
   
   render() {
      return (
