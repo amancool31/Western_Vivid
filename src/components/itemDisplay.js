@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Card,Grid,Button,Image } from 'semantic-ui-react';
 import firebase from 'firebase';
-
+import {Link,Route} from 'react-router-dom';
   
   
 class ItemDisplay extends Component {
@@ -9,7 +9,7 @@ class ItemDisplay extends Component {
     {
         super(props)
         this.state={
-            items:this.props.content,
+            items:[], //this.props.content,
             cart:[],
             sortedItems:[],
             
@@ -19,6 +19,15 @@ class ItemDisplay extends Component {
     }
     componentDidMount()
     {
+        fetch('https://amancool31.github.io/WV/Data.json')
+        .then((response) => response.json())
+        .then((findresponse)=> {
+            console.log(findresponse);
+        this.setState({
+            items:findresponse.shirt,
+        });
+        })
+
         firebase.auth().onAuthStateChanged((user)=>{
             if(user)
             {
@@ -84,17 +93,14 @@ class ItemDisplay extends Component {
                   
                   {this.state.items.map((i,j)=>{
                  return(
-                     
-                       
-                              
-                          
-                          <Grid.Column key={j}> <Card>
-                            
+                          <Grid.Column key={j}> 
+                            <Link to={`/${this.props.contentType}/${i.code}`} >
+                            <Card>    
                              <Card.Content>
-                               <p>{i.name}</p>
-                               <Image src='https://picsum.photos/200' />
-                               <h3>₹ {i.price}</h3>
-                               <h4>{i.size}</h4>
+                               <h2>{i.title}</h2>
+                               <Image src={i.img} height="300px"/>
+                               <h3>₹ {i.code}</h3>
+                               <h4>{i.fit}</h4>
                                {
                                    this.state.loggedIn===true && firebase.auth().currentUser.emailVerified===true?
                                    <div>
@@ -120,19 +126,11 @@ class ItemDisplay extends Component {
                                }} inverted color='red'>ADD TO CART</Button>
                                }
                            </Card.Content>
-                      </Card>  </Grid.Column>
-                        
-                         
-                          
-                          
-                         
-                          
+                      </Card> </Link> </Grid.Column>
                         
                  )
              })} 
                    
-           
-             
                   </Grid.Row>
                 
                  

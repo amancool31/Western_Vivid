@@ -29,7 +29,7 @@ class BoyPage extends Component {
     render() {
         return (
             <div>
-              <ItemDisplay content={this.state.items} />         
+              <ItemDisplay content={this.state.items} contentType="boy"/>         
             </div>
         );
     }
