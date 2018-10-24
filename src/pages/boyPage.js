@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ItemDisplay from '../components/itemDisplay';
 class BoyPage extends Component {
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
         this.state={
             items:[
                 {'name':'dsgsdggsd','size':'XL','price':'900','brandName':'dfdsgvs','cart':false},
@@ -26,6 +26,7 @@ class BoyPage extends Component {
             ]
         }
     }
+     
     render() {
         return (
             <div>

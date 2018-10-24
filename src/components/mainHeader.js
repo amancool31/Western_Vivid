@@ -8,6 +8,7 @@ import SalePage from '../pages/salePage';
 import WinterPage from '../pages/winterPage';
 import LoginContainer from '../pages/loginPage';
 import SignUpContainer from '../pages/SignUpPage';
+import Page from '../pages/Page';
 
 class Main extends Component {
     constructor()
@@ -17,13 +18,15 @@ class Main extends Component {
             currentView:'',
             modalView:'login',
             showSignOut:false ,
-            photoURL:''
+            photoURL:'',
+            data:[]
              
         }
         
     }
     componentDidMount()
     {
+        
         firebase.auth().onAuthStateChanged((user)=>{
             if(user)
             {
@@ -167,10 +170,9 @@ class Main extends Component {
                     <Route path={`/boy`} component={BoyPage}/>
                     <Route path={`/sale`} component={SalePage}/>
                     <Route path={`/winter`} component={WinterPage}/>
-                    
-                    {/* <Route path={`/login`} component={LoginContainer}/> */}
+                    <Route path={`/product/:id`} component={Page} />
                     <Route path={`/signup`} component={SignUpContainer}/>
-                    {/*{SignUpContainer LoginContainer}/>*/}
+                    
                 </Switch>
                 </div>
     

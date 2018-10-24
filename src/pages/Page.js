@@ -1,27 +1,29 @@
 import React, { Component } from 'react'
-import {  Grid,Image } from 'semantic-ui-react'
-import styled from 'styled-components';
+import {  Grid,Image ,Loader ,Dimmer} from 'semantic-ui-react'
+// import styled from 'styled-components';
 
-const Div = styled.div`
-  &:hover {   
-   transform: translateX(+50%);
- }`;
+// const Div = styled.div`
+//   &:hover {   
+//    transform: translateX(+50%);
+//  }`;
 
  class Basicintro extends Component {
-    constructor(props) {
-      super(props);
+    constructor() {
+      super();
       this.state = {
         titleText: "Bird's Nest",
         bodyText: 'This is not really a bird nest.',
-        data:[]
+         
       };
     }
 
     componentDidMount(){
+      
+      console.log(this.props.img)
         fetch('https://amancool31.github.io/WV/Data.json')
         .then((response) => response.json())
         .then((findresponse)=> {
-            console.log(findresponse);
+             
         this.setState({
             data:findresponse.shirt,
         });
@@ -29,22 +31,18 @@ const Div = styled.div`
     }
   
     render() {
-        const Basictext= () => (
-            <div>
-                <h1><ul>{this.state.data.map((item,key) => <li>{item.title}</li>)} </ul></h1>
-              <h2>{this.state.titleText}</h2>
-              {this.state.bodyText}
-            </div>
-
-        )
+         
       return (
         <Grid >
       <Grid.Row columns={2}>
         <Grid.Column width={5}>
-        <Image src='https://firebasestorage.googleapis.com/v0/b/western-vivid-efd88.appspot.com/o/pics%2Fshirts%2FWV-2121.jpg?alt=media&token=d0e81293-a091-4ffe-9696-b5ea41c462c2' size='large'  rounded />
+         
+         
+          <Image src={this.props.data.img} size='large'  rounded />
+       
         </Grid.Column>
         <Grid.Column width={11}>
-          <Basictext />
+          {/* <Basictext /> */}
         </Grid.Column>
       </Grid.Row>
   
@@ -67,12 +65,40 @@ const Div = styled.div`
     
 //   )
 export default class Page extends Component {
+  constructor()
+  {
+    super()
+    this.state={
+      data:[]
+    }
+  }
+  
+  componentDidMount()
+  {
+    fetch('https://amancool31.github.io/WV/Data.json')
+    .then((response) => response.json())
+    .then((findresponse)=> {
+        for(var i=0;i<findresponse.shirt.length;i++)
+        {
+          if(findresponse.shirt[i].code==this.props.match.params.id)
+          {
+            this.setState({data:findresponse.shirt[i]})
+            break;
+          }
+           
+        }
+     console.log(this.state.data)
+    })
+  }
   render() {
     return (
       <div >
-          {/* <Div> */}
-        <Basicintro />
-          {/* </Div> */}
+           
+          
+         
+          <Basicintro  data={this.state.data}/>
+          
+           
           
       </div>
     )

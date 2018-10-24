@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import {Card,Grid,Button,Image } from 'semantic-ui-react';
 import firebase from 'firebase';
 import {Link,Route} from 'react-router-dom';
-  
+import Page from '../pages/Page';
   
 class ItemDisplay extends Component {
     constructor(props)
@@ -22,7 +22,7 @@ class ItemDisplay extends Component {
         fetch('https://amancool31.github.io/WV/Data.json')
         .then((response) => response.json())
         .then((findresponse)=> {
-            console.log(findresponse);
+            // console.log(findresponse);
         this.setState({
             items:findresponse.shirt,
         });
@@ -63,7 +63,7 @@ class ItemDisplay extends Component {
         cartitems.splice(cartitems.indexOf(item),1)
         itemsList[index].cart=false;
         this.setState({items:itemsList,cart:cartitems});
-        console.log(this.state.cart)
+        // console.log(this.state.cart)
     }
     // onModify()
     // {
@@ -94,7 +94,7 @@ class ItemDisplay extends Component {
                   {this.state.items.map((i,j)=>{
                  return(
                           <Grid.Column key={j}> 
-                            <Link to={`/${this.props.contentType}/${i.code}`} >
+                            <Link to={`/product/${i.code}`}>
                             <Card>    
                              <Card.Content>
                                <h2>{i.title}</h2>
