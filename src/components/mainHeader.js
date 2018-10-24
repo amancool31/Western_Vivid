@@ -167,6 +167,7 @@ class Main extends Component {
                     <Route path={`/boy`} component={BoyPage}/>
                     <Route path={`/sale`} component={SalePage}/>
                     <Route path={`/winter`} component={WinterPage}/>
+                    
                     {/* <Route path={`/login`} component={LoginContainer}/> */}
                     <Route path={`/signup`} component={SignUpContainer}/>
                     {/*{SignUpContainer LoginContainer}/>*/}
