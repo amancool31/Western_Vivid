@@ -6,7 +6,7 @@ class MenPage extends Component {
         return (
             <div>
             <p>MEN'S PAGE</p> 
-            <Page />        
+                 
             </div>
         );
     }

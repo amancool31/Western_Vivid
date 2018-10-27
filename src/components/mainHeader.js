@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button ,Modal,Image} from 'semantic-ui-react';
+import { Segment,Header, Grid, Button ,Modal,Image,  Input} from 'semantic-ui-react';
 import firebase from 'firebase';
 import {BrowserRouter,Route,Switch,Link} from 'react-router-dom'
 import MenPage from '../pages/menPage';
@@ -10,6 +10,41 @@ import LoginContainer from '../pages/loginPage';
 import SignUpContainer from '../pages/SignUpPage';
 import Page from '../pages/Page';
 
+class ImgModal extends Component {
+    render() {
+        return (
+            <div>
+               <Modal trigger={<Image src={this.props.imgsrc}  centered size='mini'/>}>
+               <Segment   color='red' size='huge'>
+               <center>{this.props.username} </center>
+               </Segment >
+                <Grid >
+                    <Grid.Row columns={2}>
+                <Grid.Column>
+                <Image circular   src={this.props.imgsrc}/>
+                </Grid.Column>
+                 
+                    <Grid.Column>
+                    
+                    <Input fluid  label='Phone No.' /><br/><br/>
+                    <Input fluid  label='Address Line 1' /><br/><br/>
+                    <Input fluid label='Address Line 2' /><br/><br/>
+                    <Input fluid label='City' /><br/><br/>
+                    <Input fluid label='State' /><br/><br/>
+                    <Input fluid label='Pincode' /><br/><br/>
+
+
+                    </Grid.Column>
+                    </Grid.Row>
+                    </Grid>
+                    <center><Button color='red' inverted>SAVE CHANGES</Button></center><br/>
+            </Modal> 
+            </div>
+        );
+    }
+}
+ 
+
 class Main extends Component {
     constructor()
     {
@@ -19,7 +54,8 @@ class Main extends Component {
             modalView:'login',
             showSignOut:false ,
             photoURL:'',
-            data:[]
+            data:[],
+            username:''
              
         }
         
@@ -30,12 +66,12 @@ class Main extends Component {
         firebase.auth().onAuthStateChanged((user)=>{
             if(user)
             {
-                this.setState({showSignOut:true,photoURL:user.photoURL})
+                this.setState({showSignOut:true,photoURL:user.photoURL,username:user.email})
                  
             }
             else
             {
-                this.setState({showSignOut:false,photoURL:''})
+                this.setState({showSignOut:false,photoURL:'',username:''})
             }
         })
     }
@@ -81,7 +117,7 @@ class Main extends Component {
                             {
                                 this.state.showSignOut==true?
                                 <Grid.Column>
-                                    <Image src={this.state.photoURL} circular centered size='mini'/>
+                                    <ImgModal username={this.state.username} imgsrc={this.state.photoURL}/>
                                 </Grid.Column>
                                 :null
                             }
@@ -184,4 +220,7 @@ class Main extends Component {
     }
 }
 
+ 
+
+ 
 export default Main;
